@@ -80,3 +80,27 @@ describe('文字列の検証', () => {
 		});
 	});
 });
+
+describe('配列の検証', () => {
+	describe('プリミティブ配列', () => {
+		const tags = ['Jest', 'Storybook', 'Playwright', 'React', 'Next.js'];
+		test('toContain: リストの中に含まれるか', () => {
+			expect(tags).toContain('Jest');
+		});
+		test('toHaveLength: リストの長さ', () => {
+			expect(tags).toHaveLength(5);
+		});
+	});
+	describe('オブジェクトは配列', () => {
+		const article1 = { author: 'bob', title: 'Testing Next.js' };
+		const article2 = { author: 'michel', title: 'Storybook play function' };
+		const article3 = { author: 'karen', title: 'Visual Regression Testing ' };
+		const articles = [article1, article2, article3];
+		test('toContainEqual: リストの中に含まれるか', () => {
+			expect(articles).toContain(article1);
+		});
+		test('arrayContaining: 配列要素が全て含まれているか', () => {
+			expect(articles).toEqual(expect.arrayContaining([article1, article3]));
+		});
+	});
+});
