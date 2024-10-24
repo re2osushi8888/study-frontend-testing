@@ -104,3 +104,30 @@ describe('配列の検証', () => {
 		});
 	});
 });
+
+describe('オブジェクトの検証', () => {
+	const author = { name: 'taroYamada', age: 38 };
+	const article = {
+		title: 'Testing with jest',
+		author,
+	};
+	test('toMatchObject: 完全or部分一致', () => {
+		expect(author).toMatchObject({ name: 'taroYamada', age: 38 });
+		expect(author).toMatchObject({ name: 'taroYamada' });
+		expect(author).not.toMatchObject({ gender: 'man' });
+	});
+	test('toHaveProperty: プロパティを保持しているか', () => {
+		expect(author).toHaveProperty('name');
+		expect(author).toHaveProperty('age');
+	});
+	test('objectContaining: オブジェクトに含まれるオブジェクトの検証', () => {
+		expect(article).toEqual({
+			title: 'Testing with jest',
+			author: expect.not.objectContaining({ gender: 'man' }),
+		});
+		expect(article).toEqual({
+			title: 'Testing with jest',
+			author: expect.objectContaining({ age: 38, name: 'taroYamada' }),
+		});
+	});
+});
