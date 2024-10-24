@@ -48,3 +48,35 @@ describe('数値の検証', () => {
 		expect(0.1 + 0.2).not.toBeCloseTo(0.3, 16);
 	});
 });
+
+describe('文字列の検証', () => {
+	const str = 'こんにちは世界';
+	const obj = { status: 200, message: str };
+	test('検証値は期待値と等しい', () => {
+		expect(str).toBe('こんにちは世界');
+		expect(str).toEqual('こんにちは世界');
+	});
+	test('toHaveLength: 文字列の長さ', () => {
+		expect(str).toHaveLength(7);
+		expect(str).not.toHaveLength(8);
+	});
+	test('toContain: 文字列部分一致', () => {
+		expect(str).toContain('世界');
+		expect(str).not.toContain('さようなら');
+	});
+	test('toMatch: 文字列正規表現一致', () => {
+		expect(str).toMatch(/世界/);
+	});
+	test('stringContaining: オブジェクトの中の文字列部分一致', () => {
+		expect(obj).toEqual({
+			status: 200,
+			message: expect.stringContaining('世界'),
+		});
+	});
+	test('stringMatching: オブジェクトの中の文字列正規表現一致', () => {
+		expect(obj).toEqual({
+			status: 200,
+			message: expect.stringMatching(/世界/),
+		});
+	});
+});
