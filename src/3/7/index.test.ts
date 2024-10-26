@@ -38,8 +38,7 @@ describe('非同期処理', () => {
 		});
 		test('return していないため、Promise が解決する前にテストが終了してしまう', () => {
 			// bun:testだと両方失敗する
-
-      // 失敗を期待して書かれたアサーション
+			// 失敗を期待して書かれたアサーション
 			// expect(wait(2000)).resolves.toBe(3000);
 			// 正しくはアサーションを return する
 			// return expect(wait(2000)).resolves.toBe(3000);
