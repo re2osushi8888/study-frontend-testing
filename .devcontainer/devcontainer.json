@@ -13,6 +13,8 @@
 			],
 			"settings": {
 				"editor.formatOnSave": true,
+				"files.autoSave": "afterDelay",
+				"files.autoSaveDelay": 1000,
 				"editor.defaultFormatter": "biomejs.biome",
 				"editor.codeActionsOnSave": {
 					"quickfix.biome": "always",
